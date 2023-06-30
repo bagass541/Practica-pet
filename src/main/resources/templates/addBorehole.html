@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns="http:/www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/image/wiew2.css">
+   <title>site</title>
+ </head>
+ <body>
+    <h1 style="font-family: 'Montserrat', sans-serif; font-size: 40px;color: #fff;">Modem</h1>
+    <div class="container">
+       
+        <p>Пожалуйста, заполните данную форму для добавления нового объекта.</p>
+        <hr>
+    <form method="post" th:object="${borehole}">
+        <label for="name"><b>Наименование скважины</b></label>
+        <input type="text" th:field="*{name}"/>
+
+    <br>
+        <label for="dt"><b>Дата начала</b></label>
+        <input type="date" placeholder="Enter start" name="d1" required>
+    <br>
+    <label for="dt2"><b>Дата окончания</b></label>
+    <input type="date" placeholder="Enter end" name="d2" required>
+                <br>
+        <label for="kor1"><b>Координата Х</b></label>
+        <input type="text" placeholder="Enter X" name="cor1" required>
+                <br>
+                <label for="kor2"><b>Координата Y</b></label>
+                <input type="text" placeholder="Enter Y" name="cor2" required>
+                
+                <br>
+                <label for="namek"><b>Наименование куста</b></label>             
+                <select class="form-control" th:field="${idBush}">                  
+                    <option th:each="bush : ${bushes}" th:value="${bush.id}" th:text="${bush.name}"></option>             
+                </select> 
+                <br>             
+
+                <label for="type"><b>Тип бурения</b></label>
+                <select class="form-control" th:field="${idType}">
+                        <option th:each="type : ${types}" th:value="${type.id}" th:text="${type.name}"></option>
+                </select>
+        <hr>
+
+
+        <button type="submit" name="submitbutton" class="registerbtn" style="color: #ffffff; font-family: 'Montserrat'; font-weight: bold; background-color: #8bbbf9; border: #a5c0ff;">Добавить</button>
+       </form> 
+    </div>
+ </body>
+</html>
