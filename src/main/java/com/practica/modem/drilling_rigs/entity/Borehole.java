@@ -34,30 +34,26 @@ public class Borehole {
 	
 	private String name;
 	
-	@NotNull
+	
 	@Column(name = "begin_date")
 	private LocalDate beginDate;
 	
-	@NotNull
+
 	@Column(name = "end_date")
 	private LocalDate endDate;
 	
 	private float x;
 	private float y;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_bush")
 	private Bush bush;
 	
-//	@OneToOne
-//	@JoinColumn(name = "id_area")
-//	private AreaName areaName;
-	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_type_drill")
 	private TypeDrilling typeDrilling;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Barrel> barrels;
 	
 	public boolean hasNeighbours()

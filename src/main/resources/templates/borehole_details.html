@@ -86,7 +86,7 @@
 <th class="sorting sorting_desc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 80px;" aria-label="Name: activate to sort column ascending" aria-sort="descending">
           </th>
   </div>
- <div id="content">
+ <div id="content2">
   
 	<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Поиск по номеру.." title="Введите имя">
   
@@ -97,45 +97,20 @@
         <tr><font></font>
         
           
-          <th style="width:7%;">Имя</p></th> <font></font>
-          <th style="width:9%;">Дата начала </p></th> <font></font>
-          <th style="width:9%;"> <p>Дата окончания</p></th> <font></font>
-          <th style="width:9%;"><p>Координата X</p></th> <font></font>
-          <th style="width:9%;"><p>Координата Y</p></th> <font></font>
-          <th style="width:9%;"><p>Именование куста</p></th> <font></font>
-          <th style="width:15%;"><p>Именование площади</p></th> <font></font>
-          <th style="width:15%;"><p>Тип бурения</p></th> <font></font>
-          <th style="width:9%;"><p>Скважины - соседки</p></th> <font></font>
-          <th style="width:8%;"><p>Несколько стволов</p></th> <font></font>
-          <th style="width:7%;"><p></p></th> <font></font>
+          <th style="width:45%;">Наименование ствола</p></th> <font></font>
+
         </tr><font></font>
     </thead><font></font>
     <tbody><font></font>
    
-   		
-    	<th:block th:each="borehole : ${boreholes}">
-    		
-    	<form action="#" th:action="@{/borehole_details}" method="get">
+    	<th:block th:each="barrel : ${barrels}" >
+    		 
         <tr><font></font>
-        
-            <td th:text="${borehole.name}">...</td><font></font>
-      		<td th:text="${borehole.beginDate}">...</td><font></font>
-            <td th:text="${borehole.endDate}">....</td><font></font>
-            <td th:text="${borehole.x}">....</td><font></font>
-            <td th:text="${borehole.y}">....</td><font></font>
-            <td th:text="${borehole.bush.name}">....</td><font></font>
-            <td th:text="${borehole.bush.areaName.name}">....</td><font></font>
-            <td th:text="${borehole.typeDrilling.name}">....</td><font></font>
-            <td th:text="${borehole.hasNeighbours()} ? '✓' : '✕'">....</td><font></font>
-            <td th:text="${borehole.hasSeveralBarrels()} ? '✓' : '✕'">....</td><font></font>                 
-            <td>
-            <input type="hidden" th:value="${borehole.id}" name="borehole_id"/>
-            <button type="submit" id="mybutton">...</button>	 
-            </td>
-      
+            <td th:text="${barrel.name}">...</td><font></font>
+
         </tr><font></font>
-        </form>
       
+         
   </th:block>                     
     </tbody><font></font>
   </table><font></font>
@@ -144,6 +119,7 @@
 
     <input type="button" value="Добавить" onclick="window.location.href = 'addNewBorehole'" name="button1" id="mybutton" style="color: #ffffff; font-family: 'Montserrat'; font-weight: bold; background-color: #8bbbf9; border: #a5c0ff;" >
 
+    <input type="button" value="Удалить" id="mybutton2" name="button2" style="color: #ffffff; font-family: 'Montserrat'; font-weight: bold; background-color: #8bbbf9; border: #a5c0ff;">
   </div>
   <script>
     function myFunction() {
