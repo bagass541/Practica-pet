@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.practica.modem.drilling_rigs.data.BoreholeBarrelRepository;
 import com.practica.modem.drilling_rigs.data.BoreholeRepository;
+import com.practica.modem.drilling_rigs.data.BushBoreholesRepository;
 import com.practica.modem.drilling_rigs.data.BushRepository;
 import com.practica.modem.drilling_rigs.data.TypeDrillingRepository;
 import com.practica.modem.drilling_rigs.entity.Barrel;
@@ -36,6 +38,12 @@ public class HomeController {
 	@Autowired
 	private TypeDrillingRepository typeDrillingRepository;
 	
+	@Autowired
+	private BushBoreholesRepository bushBoreholesRepository;
+	
+	@Autowired
+	private BoreholeBarrelRepository boreholeBarrelRepository;
+	
 	@GetMapping
 	public String showHomePage(Model model)
 	{
@@ -46,16 +54,25 @@ public class HomeController {
 		return "home";
 	}
 	
-
+//	@GetMapping("borehole_details")
+//	public String showDetails(@RequestParam("borehole_id") Long idBorehole, Model model)
+//	{
+//		List<Barrel> barells = boreholeRepo.findById(idBorehole).get().getBarrels();
+//		model.addAttribute("barrels", barells);
+//		
+//		return "borehole_details";
+//	}
 	
-	@GetMapping("borehole_details")
-	public String showDetails(@RequestParam("borehole_id") String idBorehole, Model model)
+	
+	
+	@PostMapping("deleteBorehole")
+	public String deleteBorehole(@RequestParam("borehole_id") Long idBorehole)
 	{
-		System.out.println(idBorehole);
-		List<Barrel> barells = boreholeRepo.findById(Long.parseLong(idBorehole)).get().getBarrels();
-		model.addAttribute("barrels", barells);
+		bushBoreholesRepository.deleteAll(bushBoreholesRepository.findByIdBorehole(idBorehole));
+		boreholeBarrelRepository.deleteAll(boreholeBarrelRepository.findByIdBorehole(idBorehole));
+		boreholeRepo.deleteById(idBorehole);
 		
-		return "borehole_details";
+		return "redirect:/";
 	}
 	
 	

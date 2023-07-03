@@ -76,7 +76,7 @@
 <link href="https://cdn.datatables.net/v/dt/dt-1.13.4/af-2.5.3/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/sl-1.6.2/datatables.min.css" rel="stylesheet"/>
  
 <script src="https://cdn.datatables.net/v/dt/dt-1.13.4/af-2.5.3/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/sl-1.6.2/datatables.min.js"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
   <body>
  <h1>Modem</h1>
@@ -105,9 +105,10 @@
           <th style="width:9%;"><p>Именование куста</p></th> <font></font>
           <th style="width:15%;"><p>Именование площади</p></th> <font></font>
           <th style="width:15%;"><p>Тип бурения</p></th> <font></font>
-          <th style="width:9%;"><p>Скважины - соседки</p></th> <font></font>
-          <th style="width:8%;"><p>Несколько стволов</p></th> <font></font>
-          <th style="width:7%;"><p></p></th> <font></font>
+          <th style="width:7%;"><p>Скважины - соседки</p></th> <font></font>
+          <th style="width:6%;"><p>Несколько стволов</p></th> <font></font>
+          <th style="width:5%;"><p></p></th> <font></font>
+          <th style="width:5%;"><p></p></th> <font></font>
         </tr><font></font>
     </thead><font></font>
     <tbody><font></font>
@@ -115,7 +116,7 @@
    		
     	<th:block th:each="borehole : ${boreholes}">
     		
-    	<form action="#" th:action="@{/borehole_details}" method="get">
+    	
         <tr><font></font>
         
             <td th:text="${borehole.name}">...</td><font></font>
@@ -128,13 +129,16 @@
             <td th:text="${borehole.typeDrilling.name}">....</td><font></font>
             <td th:text="${borehole.hasNeighbours()} ? '✓' : '✕'">....</td><font></font>
             <td th:text="${borehole.hasSeveralBarrels()} ? '✓' : '✕'">....</td><font></font>                 
-            <td>
+            <td><form action="#" th:action="@{/borehole_details}" method="get">
             <input type="hidden" th:value="${borehole.id}" name="borehole_id"/>
-            <button type="submit" id="mybutton">...</button>	 
+            <button type="submit" id="mybutton">...</button></form>	 
             </td>
-      
+            <td><form th:action="@{/deleteBorehole}" method="post">
+             <input type="hidden" th:value="${borehole.id}" name="borehole_id"/>
+            <button class="btn"><i class="fa fa-trash"></i></button> </form></td>
+     
         </tr><font></font>
-        </form>
+      
       
   </th:block>                     
     </tbody><font></font>

@@ -45,15 +45,15 @@ public class Borehole {
 	private float x;
 	private float y;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "id_bush")
 	private Bush bush;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "id_type_drill")
 	private TypeDrilling typeDrilling;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany
 	private List<Barrel> barrels;
 	
 	public boolean hasNeighbours()

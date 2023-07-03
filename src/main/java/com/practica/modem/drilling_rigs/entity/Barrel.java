@@ -29,7 +29,7 @@ public class Barrel {
 	
 	private String name;
 	
-	@ManyToOne(cascade =  CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "id_borehole")
 	private Borehole borehole;
 
