@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
@@ -21,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "barrel")
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+@NoArgsConstructor
 public class Barrel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,8 +30,9 @@ public class Barrel {
 	
 	private String name;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_borehole")
-	private Borehole borehole;
+	
+//	@ManyToOne
+//	@JoinColumn(name = "id_borehole")
+//	private Borehole borehole;
 
 }

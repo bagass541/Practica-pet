@@ -16,14 +16,12 @@ import lombok.NoArgsConstructor;
 @Table(name = "borehole_barrels")
 @IdClass(BoreholeBarrelId.class)
 public class BoreholeBarrel {
-
-
-	
-	@Id
-	@Column(name = "borehole_id")
-	private long idBorehole;
 	
 	@Id
 	@Column(name = "barrels_id")
 	private long idBarrel;
+	
+	@Id
+	@Column(name = "borehole_id")
+	private long idBorehole;
 }

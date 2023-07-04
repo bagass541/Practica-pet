@@ -6,11 +6,11 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 public class BoreholeBarrelId implements Serializable{
-
-	private long idBorehole;
 	
 	private long idBarrel;
 
+	private long idBorehole;
+	
 	public BoreholeBarrelId(long idBorehole, long idBarrel) {
 		this.idBorehole = idBorehole;
 		this.idBarrel = idBarrel;

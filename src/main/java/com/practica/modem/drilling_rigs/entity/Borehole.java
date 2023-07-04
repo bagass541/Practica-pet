@@ -32,6 +32,7 @@ public class Borehole {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	@NotNull
 	private String name;
 	
 	
@@ -42,7 +43,10 @@ public class Borehole {
 	@Column(name = "end_date")
 	private LocalDate endDate;
 	
+	@NotNull
 	private float x;
+	
+	@NotNull
 	private float y;
 	
 	@ManyToOne
@@ -51,6 +55,7 @@ public class Borehole {
 	
 	@OneToOne
 	@JoinColumn(name = "id_type_drill")
+	@NotNull
 	private TypeDrilling typeDrilling;
 	
 	@OneToMany

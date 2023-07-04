@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -14,6 +15,8 @@ import com.practica.modem.drilling_rigs.data.BarrelRepository;
 import com.practica.modem.drilling_rigs.data.BoreholeBarrelRepository;
 import com.practica.modem.drilling_rigs.data.BoreholeRepository;
 import com.practica.modem.drilling_rigs.entity.Barrel;
+import com.practica.modem.drilling_rigs.entity.Borehole;
+import com.practica.modem.drilling_rigs.entity.BoreholeBarrel;
 
 @Controller
 @SessionAttributes("borehole_id")
@@ -35,6 +38,8 @@ public class BarrelsController {
 		model.addAttribute("barrels", barells);
 		model.addAttribute("borehole_id", idBorehole);
 		
+		model.addAttribute("barrelForAdd", new Barrel());
+		
 		return "borehole_details";
 	}
 	
@@ -45,5 +50,17 @@ public class BarrelsController {
 		barrelRepository.deleteById(idBarrel);
 		
 		return "redirect:/borehole_details" + "?borehole_id=" + model.getAttribute("borehole_id");
+	}
+	
+	@PostMapping("addBarrel")
+	public String addBarrel(@ModelAttribute Barrel barrel, Model model)
+	{
+		Long idBorehole = (Long) model.getAttribute("borehole_id");
+		
+		barrelRepository.save(barrel);
+		boreholeBarrelRepository.save(new BoreholeBarrel(barrel.getId(), idBorehole));
+		
+		
+		return "redirect:/borehole_details" + "?borehole_id=" + idBorehole;
 	}
 }
