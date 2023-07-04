@@ -36,11 +36,13 @@
                 
                 <br>
                 <label for="namek"><b>Наименование куста</b></label>           
-                <select class="form-control" th:field="*{bush}">                  
+                <select class="form-control" th:field="*{bush}">               	            
                     <option th:each="bush1 : ${bushes}" th:value="${bush1.id}" th:text="${bush1.name}"></option>             
-                </select>               
-                <button class="btn"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                <br>             
+                </select>           
+                <div class="inputButton">          
+                <input type="button" class="btn" value="+" onclick="window.location.href = '/addBush'"/>
+                </div>
+                        
 
                 <label for="type"><b>Тип бурения</b></label>
                 <select class="form-control" th:field="*{typeDrilling}">

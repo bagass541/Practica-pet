@@ -11,6 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,12 +25,14 @@ public class Bush {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	@NotNull
 	private String name;
 	
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_area")
-	private AreaName areaName;
+	@NotNull
+	private Area area;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Borehole> boreholes;

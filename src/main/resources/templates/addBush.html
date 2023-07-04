@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html>
+<html  xmlns="http:/www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,19 +15,20 @@
        
         <p>Пожалуйста, заполните данную форму для добавления нового куста.</p>
         <hr>
-    
+    	<form method="post">
         <label for="name"><b>Наименование куста</b></label>
-        <input type="text" placeholder="Enter name" name="name" required>
-
+        <input type="text" placeholder="Enter name" name="name" required th:field="${bush.name}">
+       
     <br>
         <label for="dt"><b>Наименование площади</b></label>
-        <input type="text" placeholder="Enter square" name="d1" required>
+        <input type="text" placeholder="Enter square" name="d1" required th:field="${area.aName}">
     <br>
    
     
        
-        <button type="submit" name="submitbutton" class="registerbtn" style="color: #ffffff; font-family: 'Montserrat'; font-weight: bold; background-color: #8bbbf9; border: #a5c0ff;">Добавить</button>
-        
+       <button type="submit" name="submitbutton" class="registerbtn" style="color: #ffffff; font-family: 'Montserrat'; font-weight: bold; background-color: #8bbbf9; border: #a5c0ff;">Добавить</button>
+        </form>
+       
     </div>
  </body>
 </html>

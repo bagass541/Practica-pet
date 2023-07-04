@@ -20,3 +20,7 @@ body{
     border-color: #fff;
     border-radius: 5px;
 }
+
+.inputButton {
+	 font-size:70%;
+}

@@ -1,5 +1,6 @@
 package com.practica.modem.drilling_rigs.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,13 +13,14 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @Table(name = "area")
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class AreaName {
+@NoArgsConstructor
+public class Area {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	private String name;
+	@Column(name ="name")
+	private String aName;
 	
 }
