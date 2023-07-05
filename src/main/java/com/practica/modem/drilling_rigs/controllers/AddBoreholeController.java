@@ -3,6 +3,7 @@ package com.practica.modem.drilling_rigs.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,8 @@ import com.practica.modem.drilling_rigs.entity.Borehole;
 import com.practica.modem.drilling_rigs.entity.Bush;
 import com.practica.modem.drilling_rigs.entity.BushBoreholes;
 import com.practica.modem.drilling_rigs.entity.TypeDrilling;
+
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/addNewBorehole")
@@ -46,10 +49,21 @@ public class AddBoreholeController {
 	}
 	
 	@PostMapping
-	public String saveBorehole(@ModelAttribute("borehole") Borehole borehole) {
+	public String saveBorehole(@Valid @ModelAttribute("borehole") Borehole borehole, Errors errors, Model model) {
+		
+		if(errors.hasErrors())
+		{
+			model.addAttribute("bushes", bushRepository.findAll());
+			model.addAttribute("types", typeDrillingRepository.findAll());
+			return "addBorehole";
+		}
 		
 		boreholeRepo.save(borehole);
-		bushBoreholesRepository.save(new BushBoreholes(borehole.getBush().getId(), borehole.getId()));
+		
+		if(borehole.getBush() != null)
+		{
+			bushBoreholesRepository.save(new BushBoreholes(borehole.getBush().getId(), borehole.getId()));
+		}
 		
 		return "redirect:/";
 	}

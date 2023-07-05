@@ -124,8 +124,8 @@
             <td th:text="${borehole.endDate}">....</td><font></font>
             <td th:text="${borehole.x}">....</td><font></font>
             <td th:text="${borehole.y}">....</td><font></font>
-            <td th:text="${borehole.bush.name}">....</td><font></font>
-            <td th:text="${borehole.bush.area.aName}">....</td><font></font>
+            <td th:text="${borehole.bush != null} ? ${borehole.bush.name}">Нет</td><font></font>
+            <td th:text="${borehole.bush != null} ? ${borehole.bush.area.aName}">Нет</td><font></font>
             <td th:text="${borehole.typeDrilling.name}">....</td><font></font>
             <td th:text="${borehole.hasNeighbours()} ? '✓' : '✕'">....</td><font></font>
             <td th:text="${borehole.hasSeveralBarrels()} ? '✓' : '✕'">....</td><font></font>                 
