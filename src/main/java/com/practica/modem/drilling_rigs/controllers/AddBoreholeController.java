@@ -1,5 +1,7 @@
 package com.practica.modem.drilling_rigs.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,6 +60,13 @@ public class AddBoreholeController {
 			return "addBorehole";
 		}
 		
+		
+		if(!checkUnique(borehole))
+		{
+
+			return "redirect:/addNewBorehole";
+		}
+		
 		boreholeRepo.save(borehole);
 		
 		if(borehole.getBush() != null)
@@ -66,5 +75,33 @@ public class AddBoreholeController {
 		}
 		
 		return "redirect:/";
+	}
+	
+	private boolean checkUnique(Borehole borehole)
+	{
+		if(borehole.getBush() != null)
+		{
+			List<Borehole> boreholes = borehole.getBush().getBoreholes();
+			for(Borehole b : boreholes)
+			{
+				if(b.getName().equals(borehole.getName()))
+				{
+					return false;
+				}				
+			}
+			return true;
+		}
+		else {
+			List<Borehole> boreholes = boreholeRepo.findByBush(null);
+			for(Borehole b : boreholes)
+			{
+				if(b.getName().equals(borehole.getName()))
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+
 	}
 }

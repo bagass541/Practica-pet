@@ -40,11 +40,28 @@ public class AddBushController {
 	@PostMapping
 	public String saveBush(@ModelAttribute("bush") Bush bush, @ModelAttribute("area") Area area)
 	{
+		if(!checkUnique(bush, area))
+		{
+			return "redirect:/addBush";
+		}
+		
 		areaRepository.save(area);
 		
 		bush.setArea(area);
 		bushRepository.save(bush);
 		
 		return "redirect:/addNewBorehole";
+	}
+	
+	private boolean checkUnique(Bush bush, Area area)
+	{
+		System.out.println(bushRepository.findByName(bush.getName()).size());
+		System.out.println(areaRepository.findByAName(area.getAName()).size());
+		if(bushRepository.findByName(bush.getName()).size() != 0 || areaRepository.findByAName(area.getAName()).size() != 0)
+		{
+			return false;
+		}
+
+		return true;
 	}
 }

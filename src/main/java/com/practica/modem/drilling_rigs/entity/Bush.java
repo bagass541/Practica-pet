@@ -3,6 +3,7 @@ package com.practica.modem.drilling_rigs.entity;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,6 +27,7 @@ public class Bush {
 	private long id;
 	
 	@NotNull
+	@Column(unique = true)
 	private String name;
 	
 	
@@ -34,6 +36,6 @@ public class Bush {
 	@NotNull
 	private Area area;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "bush")
 	private List<Borehole> boreholes;
 }

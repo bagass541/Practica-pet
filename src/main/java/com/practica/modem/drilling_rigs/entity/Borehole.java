@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.message.Message;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,6 +17,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -24,7 +27,9 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Table(name = "borehole")
+@Table(name = "borehole", uniqueConstraints = {
+		@UniqueConstraint(columnNames = {"name", "id_bush"})
+})
 @NoArgsConstructor
 @Data
 public class Borehole {
@@ -63,6 +68,7 @@ public class Borehole {
 	
 	@OneToMany
 	private List<Barrel> barrels;
+	
 	
 	public boolean hasNeighbours()
 	{

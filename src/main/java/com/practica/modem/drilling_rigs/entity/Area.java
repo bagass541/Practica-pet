@@ -20,7 +20,7 @@ public class Area {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name ="name")
+	@Column(name ="name", unique = true)
 	private String aName;
 	
 }
