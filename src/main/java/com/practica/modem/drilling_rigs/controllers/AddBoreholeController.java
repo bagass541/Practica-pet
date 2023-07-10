@@ -62,7 +62,7 @@ public class AddBoreholeController {
 		}
 		
 		
-		if(!checkUnique(borehole))
+		if(!IsUnique(borehole) || !isRightDates(borehole))
 		{
 
 			return "redirect:/addNewBorehole";
@@ -78,7 +78,7 @@ public class AddBoreholeController {
 		return "redirect:/";
 	}
 	
-	private boolean checkUnique(Borehole borehole)
+	private boolean IsUnique(Borehole borehole)
 	{
 		if(borehole.getBush() != null)
 		{
@@ -104,5 +104,14 @@ public class AddBoreholeController {
 			return true;
 		}
 
+	}
+	
+	private boolean isRightDates(Borehole borehole)
+	{
+		if(borehole.getBeginDate().isAfter(borehole.getEndDate()))
+		{
+			return false;
+		}
+		return true;
 	}
 }
