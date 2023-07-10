@@ -57,6 +57,7 @@ public class AddBoreholeController {
 		{
 			model.addAttribute("bushes", bushRepository.findAll());
 			model.addAttribute("types", typeDrillingRepository.findAll());
+			borehole.setBush(null);
 			return "addBorehole";
 		}
 		

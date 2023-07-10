@@ -66,7 +66,7 @@ public class Borehole {
 	@NotNull
 	private TypeDrilling typeDrilling;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "borehole", cascade = CascadeType.REMOVE)
 	private List<Barrel> barrels;
 	
 	

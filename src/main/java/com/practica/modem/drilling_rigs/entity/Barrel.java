@@ -21,7 +21,9 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "barrel")
+@Table(name = "barrel", uniqueConstraints = {
+		@UniqueConstraint(columnNames = {"name", "id_borehole"})
+})
 @NoArgsConstructor
 public class Barrel {
 	@Id
@@ -32,8 +34,10 @@ public class Barrel {
 	private String name;
 	
 	
-//	@ManyToOne
-//	@JoinColumn(name = "id_borehole")
-//	private Borehole borehole;
+	@ManyToOne
+	@JoinColumn(name = "id_borehole")
+	private Borehole borehole;
+	
+	
 
 }

@@ -54,17 +54,7 @@ public class HomeController {
 		return "home";
 	}
 	
-//	@GetMapping("borehole_details")
-//	public String showDetails(@RequestParam("borehole_id") Long idBorehole, Model model)
-//	{
-//		List<Barrel> barells = boreholeRepo.findById(idBorehole).get().getBarrels();
-//		model.addAttribute("barrels", barells);
-//		
-//		return "borehole_details";
-//	}
-	
-	
-	
+		
 	@PostMapping("deleteBorehole")
 	public String deleteBorehole(@RequestParam("borehole_id") Long idBorehole)
 	{
